@@ -9,7 +9,6 @@ import {successResponce,errorResponce} from "./createResponce.js";
 import { regist } from "./register.js";
 import {fitness_finish, fitness_start, get_history, users_data_operation,now_fitness} from "./hist_action.js"
 
-
 class MyServer extends VueUgokuServer {
   api(path, req) {
     if(path=="/api/login"){
