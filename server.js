@@ -1,5 +1,4 @@
-import { Server } from "https://js.sabae.cc/Server.js";
-//import {WsServer} from "./ws/wsServer.js";
+import { VueUgokuServer } from "./backend/VueUgokuServer.js";s
 import { hash } from "https://js.sabae.cc/hash.js";
 
 import {active_friend, get_active, get_ID_user} from "./active_friend.js";
@@ -10,7 +9,7 @@ import { regist } from "./register.js";
 import {fitness_finish, fitness_start, get_history, users_data_operation,now_fitness} from "./hist_action.js"
 
 
-class MyServer extends Server {
+class MyServer extends  VueUgokuServer {{
   api(path, req) {
     if(path=="/api/login"){
       //ログイン用API
@@ -170,5 +169,5 @@ class MyServer extends Server {
   }
 }
 
-new MyServer(8891);
+new MyServer(8891, "./backend/static");
 //WsServer(8002);
