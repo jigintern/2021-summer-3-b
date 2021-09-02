@@ -3,3 +3,6 @@
 /data/users.json
 /data/users_hist.json
 /static/testindex.html
+
+*/node_modules/
+*/package-lock.json

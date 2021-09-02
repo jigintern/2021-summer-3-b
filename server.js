@@ -1,4 +1,4 @@
-import { Server } from "https://js.sabae.cc/Server.js";
+import { VueUgokuServer } from "./VueUgokuServer.js";
 //import {WsServer} from "./ws/wsServer.js";
 import { hash } from "https://js.sabae.cc/hash.js";
 
@@ -10,7 +10,7 @@ import { regist } from "./register.js";
 import {fitness_finish, fitness_start, get_history, users_data_operation,now_fitness} from "./hist_action.js"
 
 
-class MyServer extends Server {
+class MyServer extends VueUgokuServer {
   api(path, req) {
     if(path=="/api/login"){
       //ログイン用API
@@ -170,5 +170,4 @@ class MyServer extends Server {
   }
 }
 
-new MyServer(8891);
-//WsServer(8002);
+new MyServer(8891, "./static");
