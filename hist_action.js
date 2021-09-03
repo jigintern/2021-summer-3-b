@@ -1,4 +1,5 @@
 import { jsonfs } from "https://js.sabae.cc/jsonfs.js";
+import { JSONDB } from "https://js.sabae.cc/JSONDB.js";
 
 const histfn = "data/users_hist.json";
 let history = jsonfs.read(histfn) || [];
@@ -27,6 +28,14 @@ export function now_fitness(index) {
   console.log("call function now_fitness");
   history = jsonfs.read(histfn) || [];
   return history[index].now_fitness;
+}
+
+export function nowFitness(user) {
+  if (!user) return;
+  const fittnessHistories = new JSONDB(histfn);
+  const myFit = fittnessHistories.data.find((h) => h.ID == user.ID);
+  if (!myFit) return;
+  return myFit.now_fitness;
 }
 
 function change_now(index, fitness) {
@@ -102,6 +111,23 @@ export function fitness_finish(index, fitness) {
   change_now(index, null);
 }
 
+export function finishFitness(user) {
+  if (!user) return "ng";
+  let fitHistories = new JSONDB(histfn);
+  let myFit = fittnessHistories.data.find((h) => h.ID == user.ID);
+  let myFitHis = myFit.hist;
+  if (!myFit) return;
+  let newHis = {
+    date: new Date(),
+    fitness: myFit.now_fitness,
+    tag: "finish",
+  }
+  myFitHis.push(newHis);
+  myFit.now_fitness = null;
+  fitHistories.write();
+  return "ok";
+}
+
 export function users_data_operation(index, item) {
   /*
     item={
@@ -118,6 +144,15 @@ export function users_data_operation(index, item) {
   item.now_fitness = history[index].now_fitness;
   //console.log("users_... item:",item)
   return item;
+}
+
+export function users_data_operation2(user) {
+  if (!user) return;
+  const fittnessHistories = new JSONDB(histfn);
+  const usersFittness = fittnessHistories.data.find((r) => r.ID == user.ID);
+  if (!usersFittness) return user;
+  user.now_fitness = usersFittness.now_fitness;
+  return user;
 }
 
 export function get_history(index, reqnum) {

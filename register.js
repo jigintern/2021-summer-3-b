@@ -4,9 +4,9 @@ import { jsonfs } from "https://js.sabae.cc/jsonfs.js";
 import {criate_history,users_data_operation} from "./hist_action.js";
 
 const userfn = "data/users.json"
-let user = jsonfs.read(userfn) || [];
 
 export function regist(item){
+    let user = jsonfs.read(userfn) || [];
     /*
         item={
             name:

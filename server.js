@@ -3,10 +3,11 @@ import { VueUgokuServer } from "./VueUgokuServer.js";
 import { hash } from "https://js.sabae.cc/hash.js";
 
 import { active_friend, get_active, get_ID_user } from "./active_friend.js";
-import { check_session, login_check } from "./check_session.js";
+import { check_session, checkSession, login_check } from "./check_session.js";
 import {
   get_data,
   change_active,
+  set_active,
   add_friend,
   get_name,
 } from "./user_action.js";
@@ -14,10 +15,13 @@ import { successResponce, errorResponce } from "./createResponce.js";
 import { regist } from "./register.js";
 import {
   fitness_finish,
+  finishFitness,
   fitness_start,
   get_history,
   users_data_operation,
+  users_data_operation2,
   now_fitness,
+  nowFitness,
 } from "./hist_action.js";
 
 class MyServer extends VueUgokuServer {
@@ -28,13 +32,19 @@ class MyServer extends VueUgokuServer {
       //user.jsonなし
       console.log("call login");
 
-      const index = login_check(req);
-      if (!index || index == "not found") return errorResponce(index);
+      // const index = login_check(req);
+      // if (!index || index == "not found") return errorResponce(index);
 
-      const res = get_data(index, "all");
+      // const res = get_data(index, "all");
 
-      if (change_active(index, true) == "ok")
-        return successResponce(users_data_operation(index, res));
+      // if (change_active(index, true) == "ok")
+      //   return successResponce(users_data_operation(index, res));
+
+      let user = login_check(req);
+      if (user === "not found") return errorResponce(user);
+      set_active(user, true);
+      return successResponce(users_data_operation2(user));
+
     } else if (path == "/api/register") {
       //ユーザ登録用API
       //call:("api/register",{name,pass}),return:"ok"
@@ -60,15 +70,21 @@ class MyServer extends VueUgokuServer {
       //user.jsonなし
       console.log("call logout");
 
-      const index = check_session(req);
-      if (index == "not found" || index == "session error")
-        return errorResponce(index);
+      // const index = check_session(req);
+      // if (index == "not found" || index == "session error")
+      //   return errorResponce(index);
+      
+      const user = checkSession(req);
+      if (user == "session error") return errorResponce(user);
 
-      const fitness = now_fitness(index);
+      // const fitness = now_fitness(index);
+      const fitness = nowFitness(user);
 
-      if (fitness != null) fitness_finish(index, fitness);
+      // if (fitness != null) fitness_finish(index, fitness);
+      if (!fitness) finishFitness(user);
 
-      return successResponce(change_active(index, false));
+      // return successResponce(change_active(index, false));
+      return succesResponce(set_active(user, false));
     } else if (path == "/api/active_friend_ID") {
       //アクティブフレンドのID取得用API
       //call:("api/get_friend",{ID,session}),return:[num, ...]
@@ -187,6 +203,9 @@ class MyServer extends VueUgokuServer {
         fitness_start(index, fitness);
       }
       return successResponce(null);
+
+
+      
     }
   }
 }

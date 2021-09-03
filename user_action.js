@@ -1,10 +1,11 @@
 import { jsonfs } from "https://js.sabae.cc/jsonfs.js";
+import { JSONDB } from "https://js.sabae.cc/JSONDB.js";
 
 import { now_fitness } from "./hist_action.js";
 import { hash } from "https://js.sabae.cc/hash.js";
 
 const userfn = "data/users.json";
-let user = jsonfs.read(userfn) || [];
+// let user = jsonfs.read(userfn) || [];
 
 export function get_data(d, key) {
   console.log("call function get_data");
@@ -13,11 +14,27 @@ export function get_data(d, key) {
   return user[d];
 }
 
+export function getUser(req) {
+  if (!req) return;
+  const users = new JSONDB(userfn);
+  const user = users.data.find((u) => u.sesion == req.sesion);
+  return user;
+}
+
 export function change_active(index, bool) {
   console.log("call function change_active");
   user = jsonfs.read(userfn) || [];
   user[index].is_active = bool;
   jsonfs.write(userfn, user);
+  return "ok";
+}
+
+export function set_active(user, isActive) {
+  let users = new JSONDB(userfn);
+  let t = users.data.find((u) => u.ID == user.ID);
+  if (!t) return "ng";
+  t.is_active = isActive;
+  users.write();
   return "ok";
 }
 
