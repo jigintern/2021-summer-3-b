@@ -1,4 +1,5 @@
 import { jsonfs } from "https://js.sabae.cc/jsonfs.js";
+import {DB} from "https://deno.lant/x/sqlite/mod.ts";
 
 import { now_fitness } from "./hist_action.js";
 import { hash } from "https://js.sabae.cc/hash.js";

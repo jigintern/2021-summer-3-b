@@ -1,4 +1,5 @@
 import { jsonfs } from "https://js.sabae.cc/jsonfs.js";
+import {DB} from "https://deno.lant/x/sqlite/mod.ts";
 
 const userfn = "data/users.json";
 let user = jsonfs.read(userfn) || [];
