@@ -176,16 +176,21 @@ export default {
     };
   },
   mounted() {
-    document.title = "My account | MinSpo!!";
-    this.user = this.$store.state.user;
-    console.log("user:", this.user);
-    this.getMyfriends();
-    console.log("myfriend:", this.Myfriends);
+    this.polling()
   },
   methods: {
     fitness_btn(fitness) {
       this.set_fitness = fitness;
       this.changeFitness();
+    },
+    async polling () {
+      setInterval(() => {
+        document.title = "My account | MinSpo!!";
+        this.user = this.$store.state.user;
+        console.log("user:", this.user);
+        this.getMyfriends();
+        console.log("myfriend:", this.Myfriends);
+      }, 10000)
     },
     async logout() {
       const formData = {

@@ -6,7 +6,6 @@ body {
 }
 input.input {
   border: 3px solid #094067;
-  border-right: none;
 }
 .button.is-warning {
   background-color: #EF4565;
@@ -50,6 +49,9 @@ a.navbar-item:hover {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   border: 3px solid #094067;
+}
+.column.title.control.input {
+  border-right:3px !important;
 }
 .navbar-menu{
   .is-active {
