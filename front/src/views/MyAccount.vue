@@ -180,7 +180,7 @@ export default {
     this.user = this.$store.state.user;
     console.log("user:", this.user);
     this.getMyfriends();
-    // this.polling();
+    this.polling();
   },
   methods: {
     fitness_btn(fitness) {
