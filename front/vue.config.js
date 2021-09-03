@@ -15,5 +15,10 @@ module.exports = {
       filename: 'css/[name].css',
       chunkFilename: '[name].css'
     },
+    loaderOptions: {
+      scss: {
+        prependData: '@import "./src/assets/scss/prepends.scss";'
+      }
+    }
   },
 };
