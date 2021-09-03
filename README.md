@@ -1,5 +1,28 @@
 # 2021-summer-3-b
 
+## Vue
+### インストール
+```
+npm install vue@next
+```
+
+### ローカルで実行  
+```
+cd front
+npm run build-local
+```
+
+### プッシュする前にこれをしてください  
+```
+cd front
+npm run build
+```
+
+### スタート
+```
+deno run -A ./server.js
+```
+
 ## API
 すべてのAPIレスポンスはcriateResponce.jsによって、オブジェクトに変換され、返されるものとする.
 
