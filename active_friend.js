@@ -5,6 +5,7 @@ import { users_data_operation } from "./hist_action.js";
 
 const userfn = "data/users.json"
 let user = jsonfs.read(userfn) || [];
+const db = new DB("data/data.db");
 
 export function get_active(){
     //すべてのアクティブユーザのIDを返す

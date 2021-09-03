@@ -6,6 +6,7 @@ import { hash } from "https://js.sabae.cc/hash.js";
 
 const userfn = "data/users.json";
 let user = jsonfs.read(userfn) || [];
+const db = new DB("data/data.db");
 
 export function get_data(d, key) {
   console.log("call function get_data");

@@ -6,6 +6,7 @@ import {criate_history} from "./hist_action.js";
 
 const userfn = "data/users.json"
 let user = jsonfs.read(userfn) || [];
+const db = new DB("data/data.db");
 
 export function regist(item){
     /*

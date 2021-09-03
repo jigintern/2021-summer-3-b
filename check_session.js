@@ -3,6 +3,7 @@ import {DB} from "https://deno.lant/x/sqlite/mod.ts";
 
 const userfn = "data/users.json";
 let user = jsonfs.read(userfn) || [];
+const db = new DB("data/data.db");
 
 export function check_session(item) {
   //セッションをチェックして、そのセッションを持つユーザの番地を返す

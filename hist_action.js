@@ -3,6 +3,7 @@ import {DB} from "https://deno.lant/x/sqlite/mod.ts";
 
 const histfn = "data/users_hist.json";
 let history = jsonfs.read(histfn) || [];
+const db = new DB("data/data.db");
 
 export function criate_history(ID) {
   //ユーザ登録時に履歴の保存先を追加する
