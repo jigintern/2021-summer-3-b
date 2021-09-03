@@ -5,6 +5,7 @@
 ```
 npm install vue@next
 ```
+
 ### ローカルで実行  
 ```
 cd front
@@ -15,6 +16,11 @@ npm run build-local
 ```
 cd front
 npm run build
+```
+
+### スタート
+```
+deno run -A ./server.js
 ```
 
 ## API
