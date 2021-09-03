@@ -1,9 +1,7 @@
 import { jsonfs } from "https://js.sabae.cc/jsonfs.js";
-
-import { change_active } from "./user_action";
+import { change_active } from "./user_action.js";
 
 const userfn = "data/users.json";
-let user = jsonfs.read(userfn) || [];
 
 export function check_session(item) {
   //セッションをチェックして、そのセッションを持つユーザの番地を返す
@@ -14,7 +12,7 @@ export function check_session(item) {
         }
     */
   console.log("call function check_session");
-  user = jsonfs.read(userfn) || [];
+  let user = jsonfs.read(userfn) || [];
   //console.log("id :",item.ID);
   for (const d in user) {
     //console.log(user[d].ID);
@@ -36,7 +34,7 @@ export function login_check(item) {
         }
     */
   console.log("call function login_check");
-  user = jsonfs.read(userfn) || [];
+  let user = jsonfs.read(userfn) || [];
   //console.log("id :",item.ID);
   for (const d in user) {
     console.log(user[d].ID);
