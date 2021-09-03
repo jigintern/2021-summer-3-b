@@ -88,6 +88,7 @@
             v-for="user in Myfriends"
             v-bind:key="user.ID"
             v-bind:user="user"
+            @add-friend="addFriend_Box(user.ID)"
           />
         </div>
         <div class="columns is-multiline" v-if="showMyHistory">
@@ -199,6 +200,10 @@ export default {
         location.reload();
       });
     },
+    addFriend_Box(friend_ID) {
+      this.add_friend_ID = friend_ID;
+      this.addFriend();
+    },
     showModalEdit() {
       this.showModal = !this.showModal;
     },
@@ -296,6 +301,14 @@ export default {
           this.add_friend_ID = null;
           if (response.data.type == "success") {
             this.getMyfriends();
+            toast({
+              message: "フレンド追加",
+              type: "is-success",
+              dismissible: true,
+              pauseOnHover: true,
+              duration: 2000,
+              position: "bottom-right",
+            });
           } else {
             if (response.data.message == "user not found") {
               toast({

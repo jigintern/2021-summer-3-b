@@ -3,6 +3,11 @@
     <div class="box">
       <p class="is-size-6 lineClamp title has-text-primary">
         {{ user.name }}
+        <a class="" aria-label="reply" v-on:click="addFriend">
+          <span class="icon is-small">
+            <i class="icon v-md-custom-icon-user-plus"></i>
+          </span>
+        </a>
       </p>
       <p v-if="user.now_fitness" class="is-size-6 lineClamp subtitle">
         <span class="icon v-md-custom-icon-fire"></span>
@@ -22,6 +27,11 @@ export default {
   name: "UserBox",
   props: {
     user: Object,
+  },
+  methods: {
+    addFriend() {
+      this.$emit("add-friend");
+    },
   },
 };
 </script>

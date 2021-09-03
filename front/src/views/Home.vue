@@ -16,6 +16,7 @@
         v-for="user in Myfriends"
         v-bind:key="user.ID"
         v-bind:user="user"
+        @add-friend="addFriend_Box(user.ID)"
       />
     </div>
   </div>
@@ -40,6 +41,7 @@ export default {
         fitness: "",
         friend_ID: [],
       },
+      add_friend_ID: "",
     };
   },
   components: {
@@ -88,6 +90,83 @@ export default {
             duration: 2000,
             position: "bottom-right",
           });
+        });
+      this.$store.commit("setIsLoading", false);
+    },
+
+    addFriend_Box(friend_ID) {
+      this.add_friend_ID = friend_ID;
+      this.addFriend();
+      console.log("addfriend");
+    },
+    async addFriend() {
+      this.$store.commit("setIsLoading", true);
+      const formData = {
+        ID: this.user.ID,
+        session: this.user.session,
+        friend_ID: this.add_friend_ID,
+      };
+      console.log("formData :", formData);
+      // console.log(this.encryptPassword(formData.pass));
+
+      await axios
+        .post("/api/add_friend", formData)
+        .then((response) => {
+          console.log(response.data);
+
+          this.add_friend_ID = null;
+          if (response.data.type == "success") {
+            toast({
+              message: "フレンド追加",
+              type: "is-success",
+              dismissible: true,
+              pauseOnHover: true,
+              duration: 2000,
+              position: "bottom-right",
+            });
+          } else {
+            if (response.data.message == "user not found") {
+              toast({
+                message: "ユーザーが存在しません",
+                type: "is-danger",
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 2000,
+                position: "bottom-right",
+              });
+            } else if (response.data.message == "can not add yourself") {
+              toast({
+                message: "あなたのIDです",
+                type: "is-danger",
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 2000,
+                position: "bottom-right",
+              });
+            } else if (response.data.message == "already added") {
+              toast({
+                message: "既に登録しています",
+                type: "is-danger",
+                dismissible: true,
+                pauseOnHover: true,
+                duration: 2000,
+                position: "bottom-right",
+              });
+            } else {
+              console.log("some warning");
+            }
+          }
+        })
+        .catch((error) => {
+          if (error.response) {
+            for (const property in error.response.data) {
+              this.errors.push(`${property}: ${error.response.data[property]}`);
+            }
+          } else {
+            this.errors.push("Something went wrong. Please try again");
+
+            console.log(JSON.stringify(error));
+          }
         });
       this.$store.commit("setIsLoading", false);
     },

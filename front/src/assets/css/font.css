@@ -38,3 +38,9 @@
 .v-md-custom-icon-earth::before {
   content: "\e9ca";
 }
+.v-md-custom-icon-user-plus::before {
+  content: "\e973";
+}
+.v-md-custom-icon-user-minus::before {
+  content: "\e974";
+}
