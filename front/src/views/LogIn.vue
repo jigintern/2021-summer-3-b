@@ -2,7 +2,7 @@
   <div class="page-log-in">
     <div class="columns">
       <div class="column is-4 is-offset-4">
-        <h1 class="title">Log in</h1>
+        <h1 class="title">ログイン</h1>
 
         <form @submit.prevent="submitForm">
           <div class="field">
@@ -13,7 +13,7 @@
           </div>
 
           <div class="field">
-            <label>Password</label>
+            <label>パスワード</label>
             <div class="control">
               <input type="password" class="input" v-model="password" />
             </div>
@@ -25,12 +25,12 @@
 
           <div class="field">
             <div class="control">
-              <button class="button is-dark">Log in</button>
+              <button class="button is-dark">ログイン</button>
             </div>
           </div>
           <hr />
 
-          Or <router-link to="/sign-up">click here</router-link> to sign up!
+          Or <router-link to="/sign-up">クリック</router-link> サインアップ
         </form>
       </div>
     </div>
