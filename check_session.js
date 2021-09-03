@@ -21,8 +21,7 @@ export function check_session(item) {
     if (user[d].ID == item.ID) {
       //console.log(d);
       if (user[d].session != item.session) return "session error";
-      change_active(d,true)
-      return d;
+      if(change_active(d,true)=="ok") return d;
     }
   }
   return "not found";
