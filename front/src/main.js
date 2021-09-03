@@ -6,7 +6,7 @@ import axios from "axios";
 
 import "@/assets/css/font.css";
 
-axios.defaults.baseURL =  process.env.VUE_APP_API_BASE_URL;
+axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
 
 createApp(App)
   .use(store)
