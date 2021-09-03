@@ -4,7 +4,6 @@ import { jsonfs } from "https://js.sabae.cc/jsonfs.js";
 import {criate_history,users_data_operation} from "./hist_action.js";
 
 const userfn = "data/users.json"
-let user = jsonfs.read(userfn) || [];
 
 export function regist(item){
     /*
@@ -13,6 +12,8 @@ export function regist(item){
             pass:
         }
     */
+    let user = jsonfs.read(userfn) || [];
+
     let ses_array=[];
     for(const d of user){
         ses_array.push(d.session);
@@ -33,13 +34,12 @@ export function regist(item){
         friend_ID:[]
     }
 
-    criate_history(id);
-    
     user.push(data);
     jsonfs.write(userfn,user);
     user = jsonfs.read(userfn) || [];
 
-    
+    criate_history(id);
+        
     data.now_fitness=null;
     return data;
 }
