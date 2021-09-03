@@ -302,8 +302,6 @@ export
 セッションID、小数型<br>
 ### is_active
 ユーザの状態、bool型<br>
-### fitness
-運動の種類、文字列型配列<br>
 ### friend_ID
 フレンド登録しているユーザのID、整数型配列<br>
 
