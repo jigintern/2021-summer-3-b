@@ -10,7 +10,7 @@
     </section>
     <div class="columns is-multiline">
       <div class="column is-12">
-        <h2 class="is-size-2 has-text-centered">アクティブなユーザー</h2>
+        <h2 class="is-size-2 has-text-centered">すべてのユーザー</h2>
       </div>
       <UserBox
         v-for="user in activeUsers"

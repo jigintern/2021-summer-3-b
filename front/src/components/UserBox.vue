@@ -36,7 +36,37 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+.column {
+  min-width: 200px;
+  .box {
+    .icon.v-md-custom-icon-fire:before {
+      width: 24px;
+      height: 24px;
+      border-radius: 50px;
+      border: 3px solid #094067;
+      background-color: #EF4565;
+      color: #EF4565;
+      content: "";
+    }
+    .icon.v-md-custom-icon-leaf:before{
+      width: 24px;
+      height: 24px;
+      border-radius: 50px;
+      border: 3px solid #094067;
+      background-color: white;
+      color: white;
+      content: "";
+    }
+    border: 3px solid #094067;
+    p {
+      font-size: 30px;
+      color: #094067 !important;
+    }
+  }
+}
+
 .image {
   margin-top: -1.25rem;
   margin-left: -1.25rem;
@@ -51,5 +81,7 @@ export default {
   /*IE対策*/
   line-height: 1.5em;
   max-height: 4.5em;
+  display: flex;
+  justify-content: space-between;
 }
 </style>
