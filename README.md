@@ -1,4 +1,20 @@
 # 2021-summer-3-b
+## 不具合
+### データ読み書きの際の不具合
+>#### 詳細
+>二重更新が原因の不具合<br>
+>#### 影響範囲
+>プログラム全体
+>#### 原因
+>排他処理が行えていない<br>
+>#### 解決策
+>・jsonファイルを疑似的なデータベースとしたものを使うのではなくSQLiteやMySQLなどの純粋なデータベースを利用する。<br>
+>・jsonファイルの読み書きの際、排他処理を追加する<br>
+>#### 報告日時
+>2021/09/03 11:02
+>#### 状態
+>未解決
+
 
 ## Vue
 ### インストール
@@ -194,6 +210,74 @@ error一覧<br>
 >session error　セッションが間違っている<br>
 >not found　リクエストされたユーザが存在しない<br>
 </p>
+
+## function
+API用function
+
+### active_friend.js
+#### get_active()
+export
+
+#### get_ID_user(list)
+export
+
+#### active_friend(index)
+export
+
+
+### check_session.js
+#### check_session(item)
+export
+
+#### login_check(item)
+export
+
+
+### createResponce.js
+#### createResponce(type,massage)
+
+#### successResponce(massage)
+export
+
+#### errorResponce(massage)
+export
+
+
+### hist_action
+#### criate_history(ID)
+export
+
+#### get_latest(index)
+export
+
+#### now_fitness(index)
+export
+
+#### change_now(index,fitness)
+
+
+#### get_latest_tag(index)
+export
+
+#### add_hist(item)
+
+
+#### fitness_start(index,fitness)
+export
+
+#### fitness_finish(index,fitness)
+export
+
+#### user_data_operation(index,item)
+export
+
+#### get_history(index,reqnum)
+export
+
+
+### register.js
+#### regist(item)
+export
 
 ## users.json
 <p>
