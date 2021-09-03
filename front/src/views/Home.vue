@@ -69,27 +69,28 @@ export default {
           if (response.data.type == "success") {
             this.Myfriends = response.data.message;
           } else {
-            toast({
-              message: "Something went wrong. Please try again.",
-              type: "is-danger",
-              dismissible: true,
-              pauseOnHover: true,
-              duration: 2000,
-              position: "bottom-right",
-            });
+            this.$store.commit("removeSession");
+            this.$store.commit("removeUser");
+            console.log(error);
+
+            this.$router.push("/log-in");
           }
           console.log("activeuser:", this.Myfriends);
         })
         .catch((error) => {
+          this.$store.commit("removeSession");
+          this.$store.commit("removeUser");
           console.log(error);
-          toast({
-            message: "Something went wrong. Please try again.",
-            type: "is-danger",
-            dismissible: true,
-            pauseOnHover: true,
-            duration: 2000,
-            position: "bottom-right",
-          });
+          // toast({
+          //   message: "Something went wrong. Please try again.",
+          //   type: "is-danger",
+          //   dismissible: true,
+          //   pauseOnHover: true,
+          //   duration: 2000,
+          //   position: "bottom-right",
+          // });
+
+          this.$router.push("/log-in");
         });
       this.$store.commit("setIsLoading", false);
     },

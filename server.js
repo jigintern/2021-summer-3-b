@@ -130,7 +130,7 @@ class MyServer extends VueUgokuServer {
 
       const res = get_data(index, "all");
 
-      if (change_active(index,true) == "ok")
+      if (change_active(index, true) == "ok")
         return successResponce(users_data_operation(index, res));
     } else if (path == "/api/get_user") {
       //ユーザ検索用API
