@@ -1,5 +1,7 @@
 import { jsonfs } from "https://js.sabae.cc/jsonfs.js";
 
+import { change_active } from "./user_action";
+
 const userfn = "data/users.json";
 let user = jsonfs.read(userfn) || [];
 
@@ -19,6 +21,7 @@ export function check_session(item) {
     if (user[d].ID == item.ID) {
       //console.log(d);
       if (user[d].session != item.session) return "session error";
+      change_active(d,true)
       return d;
     }
   }

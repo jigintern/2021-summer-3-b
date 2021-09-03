@@ -33,8 +33,8 @@ class MyServer extends VueUgokuServer {
 
       const res = get_data(index, "all");
 
-      if (change_active(index, true) == "ok")
-        return successResponce(users_data_operation(index, res));
+      //if (change_active(index, true) == "ok")
+      return successResponce(users_data_operation(index, res));
     } else if (path == "/api/register") {
       //ユーザ登録用API
       //call:("api/register",{name,pass}),return:"ok"
