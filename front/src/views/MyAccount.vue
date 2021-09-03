@@ -176,28 +176,29 @@ export default {
     };
   },
   mounted() {
-    this.polling()
+    document.title = "My account | MinSpo!!";
+    this.user = this.$store.state.user;
+    console.log("user:", this.user);
+    this.getMyfriends();
+    this.polling();
   },
   methods: {
     fitness_btn(fitness) {
       this.set_fitness = fitness;
       this.changeFitness();
     },
-    async polling () {
+    async polling() {
       setInterval(() => {
-        document.title = "My account | MinSpo!!";
-        this.user = this.$store.state.user;
-        console.log("user:", this.user);
         this.getMyfriends();
         console.log("myfriend:", this.Myfriends);
-      }, 10000)
+      }, 10000);
     },
     async logout() {
       const formData = {
         ID: this.user.ID,
         session: this.user.session,
       };
-      await axios.post("/api/logupt", formData).then((response) => {
+      await axios.post("/api/logout", formData).then((response) => {
         console.log("response:", response);
         this.$store.commit("removeSession");
         this.$store.commit("removeUser");
